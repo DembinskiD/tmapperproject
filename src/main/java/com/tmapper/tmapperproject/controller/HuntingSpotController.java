@@ -4,16 +4,12 @@ import com.tmapper.tmapperproject.entity.HuntingSpot;
 import com.tmapper.tmapperproject.enums.City;
 import com.tmapper.tmapperproject.repository.HuntingSpotRepository;
 import lombok.Data;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Converter;
-import java.lang.annotation.Annotation;
+import java.util.Arrays;
 import java.util.List;
 
-@Controller
+@RestController
 @Data
 @RequestMapping("/spots")
 public class HuntingSpotController {
@@ -24,9 +20,20 @@ public class HuntingSpotController {
 
     private HuntingSpotRepository huntingSpotRepository;
 
-    @GetMapping
-    public List<HuntingSpot> getAllByCity(@RequestParam String city) {
-
-        return huntingSpotRepository.findAllByCity(City.valueOf(city));
+    @GetMapping()
+    public List<HuntingSpot> getAll() {
+//        return huntingSpotRepository.findAll().size();
+        return huntingSpotRepository.findAll();
     }
+
+    @GetMapping("{name}")
+    public String getByCity(@PathVariable String name) {
+//        return name.getName();//todo converter string -> enum
+        return "";
+    }
+
+    private City convertStringIntoCityEnum(String name) {
+//        return Arrays.stream(City.values()).forEach();
+    }
+
 }

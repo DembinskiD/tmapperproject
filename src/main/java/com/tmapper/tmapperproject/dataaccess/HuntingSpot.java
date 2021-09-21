@@ -1,10 +1,9 @@
-package com.tmapper.tmapperproject.entity;
+package com.tmapper.tmapperproject.dataaccess;
 
-import com.tmapper.tmapperproject.enums.City;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,30 +11,28 @@ import java.util.Objects;
 @Data
 public class HuntingSpot {
 
-    public HuntingSpot() {}
+    public HuntingSpot() {
+    }
 
     public HuntingSpot(String name) {
         this.name = name;
         this.city = City.THAIS;
-        this.mainMonster = "rat";
+        this.monster = Monster.RAT;
+        teamVocations = new ArrayList<>();
     }
 
-    public HuntingSpot(String name, City city, String mainMonster) {
+    public HuntingSpot(String name, City city, Monster monster) {
         this.name = name;
         this.city = city;
-        this.mainMonster = mainMonster;
+        this.monster = monster;
+        teamVocations = new ArrayList<>();
     }
 
-    @Id
-    @GeneratedValue
-    private Long id;
-
+    @Id @GeneratedValue private Long id;
     private String name;
-    @Enumerated(EnumType.STRING)
-    private City city;
-
-    private String mainMonster;
-//    private HuntingGroundMap map;
+    @Enumerated(EnumType.STRING)  private City city;
+    @Enumerated(EnumType.STRING) private Monster monster;
+    private List<Vocation> teamVocations;
 
 
     @Override

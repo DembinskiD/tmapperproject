@@ -4,6 +4,7 @@ import com.tmapper.tmapperproject.dataaccess.*;
 import lombok.Data;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,6 +37,7 @@ public class HuntingSpotController {
     @GetMapping("/vocation/{voc}")
     public List<HuntingSpot> getByVocation(@PathVariable String vocation) {
         Vocation voc = Vocation.getVocationFromString(vocation);
+        return new ArrayList<>();
     }
 
     private Monster convertStringIntoMonsterEnum(String name) {
